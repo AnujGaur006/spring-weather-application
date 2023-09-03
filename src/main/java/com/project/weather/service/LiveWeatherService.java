@@ -16,7 +16,7 @@ import java.net.URI;
 
 @Service
 public class LiveWeatherService {
-    private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q={city},{country}&APPID={key}&units=metric";
+    private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&APPID={key}";
 
     @Value("${api.openweathermap.key}")
     private String apiKey;
@@ -29,9 +29,9 @@ public class LiveWeatherService {
         this.objectMapper = objectMapper;
     }
 
-    public CurrentWeather getCurrentWeather(String city, String country) {
-        URI url = new UriTemplate(WEATHER_URL).expand(city, country, apiKey);
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+    public CurrentWeather getCurrentWeather(String city) {
+        URI url = new UriTemplate(WEATHER_URL).expand(city, apiKey);
+        ResponseEntity<String> response  = restTemplate.getForEntity(url, String.class) ;
 
         return convert(response);
     }
@@ -42,7 +42,8 @@ public class LiveWeatherService {
             return new CurrentWeather(root.path("weather").get(0).path("main").asText(),
                     BigDecimal.valueOf(root.path("main").path("temp").asDouble()),
                     BigDecimal.valueOf(root.path("main").path("feels_like").asDouble()),
-                    BigDecimal.valueOf(root.path("wind").path("speed").asDouble()));
+                    BigDecimal.valueOf(root.path("wind").path("speed").asDouble()),
+                    root.path("weather").get(0).path("icon").asText());
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Error parsing JSON", e);
         }

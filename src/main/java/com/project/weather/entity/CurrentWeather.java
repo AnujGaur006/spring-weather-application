@@ -9,12 +9,15 @@ public class CurrentWeather implements Serializable {
     private BigDecimal temperature;
     private BigDecimal feelsLike;
     private BigDecimal windSpeed;
+    private String weatherIcon;
 
-    public CurrentWeather(String description, BigDecimal temperature, BigDecimal feelsLike, BigDecimal windSpeed) {
+    public CurrentWeather(String description, BigDecimal temperature, BigDecimal feelsLike, BigDecimal windSpeed,
+                          String weatherIcon) {
         this.description = description;
         this.temperature = temperature;
         this.feelsLike = feelsLike;
         this.windSpeed = windSpeed;
+        this.weatherIcon = weatherIcon;
     }
 
     public String getDescription() {
@@ -47,6 +50,14 @@ public class CurrentWeather implements Serializable {
 
     public void setWindSpeed(BigDecimal windSpeed) {
         this.windSpeed = windSpeed;
+    }
+
+    public String getWeatherIcon() {
+        return weatherIcon;
+    }
+
+    public void setWeatherIcon(String weatherIcon) {
+        this.weatherIcon = weatherIcon;
     }
 
     @Override

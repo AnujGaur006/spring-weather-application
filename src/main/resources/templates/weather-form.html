@@ -50,16 +50,12 @@
 </head>
 <body>
 <div class="weather-container">
-  <h2>Enter City and Country</h2>
+  <h2>Enter City</h2>
 
   <form action="#" th:action="@{/weather/details}" method="get">
     <div class="weather-section">
       <label for="city">City:</label>
       <input type="text" id="city" name="city" required>
-    </div>
-    <div class="weather-section">
-      <label for="country">Country:</label>
-      <input type="text" id="country" name="country" required>
     </div>
     <button type="submit">Get Weather</button>
   </form>

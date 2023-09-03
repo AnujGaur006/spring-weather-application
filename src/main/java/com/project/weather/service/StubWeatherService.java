@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Service
 public class StubWeatherService {
-    public CurrentWeather getCurrentWeather(String city, String country) {
-        return new CurrentWeather("Clear", BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.TEN);
+    public CurrentWeather getCurrentWeather(String city) {
+        return new CurrentWeather("mock", BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.TEN,"test");
     }
 }
